@@ -20,8 +20,6 @@ export const databaseProviders = [
                 Flat,
                 Room,
                 Control,
-                FlatRoom,
-                RoomControl,
                 Type
             ]);
             await sequelize.sync();
