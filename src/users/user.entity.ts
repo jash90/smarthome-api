@@ -15,10 +15,10 @@ import {
     Min
 } from "sequelize-typescript";
 
-import { Control } from '../control/control.entity';
-import { Flat } from '../flat/flat.entity';
+import { Control } from "../control/control.entity";
+import { Flat } from "../flat/flat.entity";
 import { Room } from "../room/room.entity";
-import { Condition } from '../condition/condition.entity';
+import { Condition } from "../condition/condition.entity";
 
 @Table({
     tableName: "users"

@@ -24,7 +24,7 @@ export class Flat extends Model<Flat> {
     @AutoIncrement
     @Column(DataType.BIGINT)
     id: number;
-    
+
     @Unique(true)
     @Column(DataType.TEXT)
     name: string;

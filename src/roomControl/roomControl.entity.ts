@@ -1,5 +1,4 @@
 import {
-
     AutoIncrement,
     BelongsTo,
     Column,
@@ -16,8 +15,8 @@ import {
     UpdatedAt
 } from "sequelize-typescript";
 
-import { Control } from '../control/control.entity';
-import { Room } from "src/room/room.entity";
+import { Control } from "../control/control.entity";
+import { Room } from "../room/room.entity";
 
 @Table({
     tableName: "roomControls"
