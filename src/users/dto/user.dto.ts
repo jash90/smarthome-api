@@ -2,7 +2,7 @@ import { User } from "../user.entity";
 import { ApiModelProperty } from "@nestjs/swagger";
 export class UserDto {
     @ApiModelProperty()
-    id: string;
+    id: number;
 
     @ApiModelProperty()
     readonly email: string;

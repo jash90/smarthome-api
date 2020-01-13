@@ -12,7 +12,9 @@ import {
     ForeignKey,
     HasMany,
     Max,
-    Min
+    Min,
+    AutoIncrement,
+    PrimaryKey
 } from "sequelize-typescript";
 
 import { Control } from "../control/control.entity";
@@ -24,12 +26,10 @@ import { Condition } from "../condition/condition.entity";
     tableName: "users"
 })
 export class User extends Model<User> {
-    @Column({
-        type: DataType.BIGINT,
-        defaultValue: DataType.BIGINT,
-        primaryKey: true
-    })
-    id: string;
+    @PrimaryKey
+    @AutoIncrement
+    @Column(DataType.BIGINT)
+    id: number;
 
     @Unique(true)
     @Column({ type: DataType.TEXT, validate: { isEmail: true } })
