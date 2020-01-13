@@ -7,7 +7,7 @@ import { Condition } from "../condition/condition.entity";
 import { Flat } from "../flat/flat.entity";
 import { Room } from "../room/room.entity";
 import { FlatRoom } from "../flatRoom/flatRoom.entity";
-import { Type } from "src/type/type.entity";
+import { Type } from "../type/type.entity";
 
 export const databaseProviders = [
     {

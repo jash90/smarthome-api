@@ -14,7 +14,7 @@ import {
     Unique,
     UpdatedAt
 } from "sequelize-typescript";
-import { User } from "src/users/user.entity";
+import { User } from "../users/user.entity";
 
 @Table({
     tableName: "conditions"
