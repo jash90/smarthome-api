@@ -6,10 +6,9 @@ import cors from "cors";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    app.enableCors();
+    app.use(cors());
     app.useGlobalPipes(new ValidationPipe());
     setupSwagger(app);
-    app.use(cors());
     await app.listen(3099);
 }
 
