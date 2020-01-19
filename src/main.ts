@@ -15,7 +15,7 @@ async function bootstrap() {
   };
   app.enableCors(options);
   setupSwagger(app);
-  await app.listen(3002);
+  await app.listen(3099);
 }
 
 bootstrap();
