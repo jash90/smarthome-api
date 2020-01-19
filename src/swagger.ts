@@ -7,6 +7,7 @@ export function setupSwagger(app: INestApplication) {
         .setLicense("MIT License", "https://opensource.org/licenses/MIT")
         .setContactEmail("email")
         .setDescription("API Documentation")
+        .setSchemes("https")
         .setVersion("1.1")
         .addBearerAuth()
         .build();
