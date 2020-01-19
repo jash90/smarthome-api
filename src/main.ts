@@ -2,12 +2,18 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { setupSwagger } from "./swagger";
-import * as cors from 'cors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors());
   app.useGlobalPipes(new ValidationPipe());
+  const options = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: true,
+    optionsSuccessStatus: 204,
+    credentials: true,
+  };
+  app.enableCors(options);
   setupSwagger(app);
   await app.listen(3002);
 }
