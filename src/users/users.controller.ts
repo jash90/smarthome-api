@@ -92,7 +92,7 @@ export class UsersController {
         return this.usersService.offset(index);
     }
 
-    @Put("me")
+    @Put("password")
     @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
     @ApiOkResponse({ type: UserDto })
