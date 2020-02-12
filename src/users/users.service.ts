@@ -10,6 +10,7 @@ import { sign } from "jsonwebtoken";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ConfigService } from "./../shared/config/config.service";
 import { UserOffset } from "./dto/user.offset";
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @Injectable()
 export class UsersService {
@@ -116,6 +117,30 @@ export class UsersService {
 
         user.firstname = updateUserDto.firstname || user.firstname;
         user.lastname = updateUserDto.lastname || user.lastname;
+
+        try {
+            const data = await user.save();
+            return new UserDto(data);
+        } catch (err) {
+            throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async updatePassword(id: string, updatePasswordDto: UpdatePasswordDto): Promise<UserDto> {
+        const user = await this.usersRepository.findByPk<User>(id, {
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+        });
+
+        if (updatePasswordDto.password !== updatePasswordDto.repeatPassword) {
+            throw new HttpException("User not found.", HttpStatus.NOT_FOUND);
+        }
+
+        if (!user) {
+            throw new HttpException("User not found.", HttpStatus.NOT_FOUND);
+        }
+
+        const salt = await genSalt(10);
+        user.password = await hash(updatePasswordDto.password, salt);
 
         try {
             const data = await user.save();

@@ -25,7 +25,7 @@ import { UserLoginResponseDto } from "./dto/user-login-response.dto";
 import { AuthGuard } from "@nestjs/passport";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UserOffset } from "./dto/user.offset";
-
+import { UpdatePasswordDto } from './dto/update-password.dto';
 @Controller("users")
 @ApiUseTags("users")
 export class UsersController {
@@ -90,5 +90,16 @@ export class UsersController {
         @Param("id", new ParseIntPipe()) index: number = 0
     ): Promise<UserOffset> {
         return this.usersService.offset(index);
+    }
+
+    @Put("me")
+    @ApiBearerAuth()
+    @UseGuards(AuthGuard("jwt"))
+    @ApiOkResponse({ type: UserDto })
+    updatePassword(
+        @Body() updatePasswordDto: UpdatePasswordDto,
+        @Req() request
+    ): Promise<UserDto> {
+        return this.usersService.updatePassword(request.user.id, updatePasswordDto);
     }
 }
