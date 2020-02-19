@@ -16,6 +16,8 @@ import {
 } from "sequelize-typescript";
 
 import { User } from "../users/user.entity";
+import { Flat } from "src/flat/flat.entity";
+import { Control } from "src/control/control.entity";
 
 @Table({
     tableName: "rooms"
@@ -36,6 +38,16 @@ export class Room extends Model<Room> {
 
     @BelongsTo(() => User)
     user: User;
+
+    @ForeignKey(() => Flat)
+    @Column(DataType.BIGINT)
+    flatId: number;
+
+    @BelongsTo(() => Flat)
+    flat: Flat;
+
+    @HasMany(()=>Control)
+    controls:Control[];
 
     @CreatedAt
     @Column({ field: "createdAt" })

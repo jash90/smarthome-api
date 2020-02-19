@@ -15,6 +15,7 @@ import {
     UpdatedAt
 } from "sequelize-typescript";
 import { User } from "../users/user.entity";
+import { Room } from "src/room/room.entity";
 
 @Table({
     tableName: "flats"
@@ -35,6 +36,9 @@ export class Flat extends Model<Flat> {
 
     @BelongsTo(() => User)
     user: User;
+
+    @HasMany(() => Room)
+    rooms: Room[];
 
     @CreatedAt
     @Column({ field: "createdAt" })
