@@ -6,17 +6,15 @@ import {
     DataType,
     DeletedAt,
     ForeignKey,
-    HasMany,
-    Length,
     Model,
     PrimaryKey,
     Table,
     Unique,
-    UpdatedAt
-} from "sequelize-typescript";
-import { User } from "../users/user.entity";
-import { Type } from "../type/type.entity";
-import { Room } from "src/room/room.entity";
+    UpdatedAt,
+} from 'sequelize-typescript';
+import { Room } from 'src/room/room.entity';
+import { Type } from '../type/type.entity';
+import { User } from '../users/user.entity';
 
 @Table({
     tableName: "controls"
