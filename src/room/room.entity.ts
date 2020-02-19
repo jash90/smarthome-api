@@ -46,8 +46,8 @@ export class Room extends Model<Room> {
     @BelongsTo(() => Flat)
     flat: Flat;
 
-    @HasMany(()=>Control)
-    controls:Control[];
+    @HasMany(() => Control)
+    controls: Control[];
 
     @CreatedAt
     @Column({ field: "createdAt" })

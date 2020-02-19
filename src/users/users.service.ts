@@ -10,7 +10,7 @@ import { sign } from "jsonwebtoken";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ConfigService } from "./../shared/config/config.service";
 import { UserOffset } from "./dto/user.offset";
-import { UpdatePasswordDto } from './dto/update-password.dto';
+import { UpdatePasswordDto } from "./dto/update-password.dto";
 
 @Injectable()
 export class UsersService {
@@ -71,7 +71,7 @@ export class UsersService {
             const token = await this.signToken(userData);
             return new UserLoginResponseDto(userData, token);
         } catch (err) {
-            if (err.errors[0].message = "email must be unique") {
+            if ((err.errors[0].message = "email must be unique")) {
                 throw new HttpException(
                     `User with email already exists`,
                     HttpStatus.CONFLICT
@@ -126,7 +126,10 @@ export class UsersService {
         }
     }
 
-    async updatePassword(id: string, updatePasswordDto: UpdatePasswordDto): Promise<UserDto> {
+    async updatePassword(
+        id: string,
+        updatePasswordDto: UpdatePasswordDto
+    ): Promise<UserDto> {
         const user = await this.usersRepository.findByPk<User>(id, {
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
         });

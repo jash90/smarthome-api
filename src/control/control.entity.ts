@@ -48,7 +48,7 @@ export class Control extends Model<Control> {
     @BelongsTo(() => User)
     user: User;
 
-    @ForeignKey(() => Room) 
+    @ForeignKey(() => Room)
     @Column(DataType.BIGINT)
     roomId?: number;
 

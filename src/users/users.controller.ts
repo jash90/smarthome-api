@@ -1,4 +1,3 @@
-import { UserLoginRequestDto } from "./dto/user-login-request.dto";
 import {
     Body,
     Controller,
@@ -12,20 +11,21 @@ import {
     Req,
     UseGuards
 } from "@nestjs/common";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UsersService } from "./users.service";
-import { UserDto } from "./dto/user.dto";
+import { AuthGuard } from "@nestjs/passport";
 import {
     ApiBearerAuth,
     ApiImplicitParam,
     ApiOkResponse,
     ApiUseTags
 } from "@nestjs/swagger";
-import { UserLoginResponseDto } from "./dto/user-login-response.dto";
-import { AuthGuard } from "@nestjs/passport";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdatePasswordDto } from "./dto/update-password.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { UserLoginRequestDto } from "./dto/user-login-request.dto";
+import { UserLoginResponseDto } from "./dto/user-login-response.dto";
+import { UserDto } from "./dto/user.dto";
 import { UserOffset } from "./dto/user.offset";
-import { UpdatePasswordDto } from './dto/update-password.dto';
+import { UsersService } from "./users.service";
 @Controller("users")
 @ApiUseTags("users")
 export class UsersController {
@@ -100,6 +100,9 @@ export class UsersController {
         @Body() updatePasswordDto: UpdatePasswordDto,
         @Req() request
     ): Promise<UserDto> {
-        return this.usersService.updatePassword(request.user.id, updatePasswordDto);
+        return this.usersService.updatePassword(
+            request.user.id,
+            updatePasswordDto
+        );
     }
 }
