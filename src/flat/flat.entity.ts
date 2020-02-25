@@ -15,7 +15,7 @@ import {
     UpdatedAt
 } from "sequelize-typescript";
 import { User } from "../users/user.entity";
-import { Room } from "src/room/room.entity";
+import { Room } from "../room/room.entity";
 
 @Table({
     tableName: "flats"

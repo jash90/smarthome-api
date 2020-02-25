@@ -12,7 +12,7 @@ import {
     Unique,
     UpdatedAt,
 } from 'sequelize-typescript';
-import { Room } from 'src/room/room.entity';
+import { Room } from '../room/room.entity';
 import { Type } from '../type/type.entity';
 import { User } from '../users/user.entity';
 

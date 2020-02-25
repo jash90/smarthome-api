@@ -16,8 +16,8 @@ import {
 } from "sequelize-typescript";
 
 import { User } from "../users/user.entity";
-import { Flat } from "src/flat/flat.entity";
-import { Control } from "src/control/control.entity";
+import { Flat } from "../flat/flat.entity";
+import { Control } from "../control/control.entity";
 
 @Table({
     tableName: "rooms"
