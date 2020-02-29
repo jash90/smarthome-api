@@ -7,7 +7,8 @@ import {
     ParseIntPipe,
     Post,
     Put,
-    UseGuards
+    UseGuards,
+    Req
 } from "@nestjs/common";
 import {
     ApiBearerAuth,
@@ -30,9 +31,11 @@ export class ControlController {
     constructor(private readonly controlsService: ControlService) {}
 
     @Get()
+    @ApiBearerAuth()
+    @UseGuards(AuthGuard("jwt"))
     @ApiOkResponse({ type: [ControlDto] })
-    findAll(): Promise<ControlDto[]> {
-        return this.controlsService.findAll();
+    findAll(@Req() request): Promise<ControlDto[]> {
+        return this.controlsService.findAll(request.user.id);
     }
 
     @Get(":id")
