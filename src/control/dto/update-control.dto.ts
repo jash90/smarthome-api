@@ -21,4 +21,9 @@ export class UpdateControlDto {
     @IsNumber()
     @IsOptional()
     readonly userId?: number;
+    
+    @ApiModelProperty()
+    @IsNumber()
+    @IsOptional()
+    readonly roomId?: number;
 }

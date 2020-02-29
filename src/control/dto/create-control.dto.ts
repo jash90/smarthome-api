@@ -1,5 +1,5 @@
 import { ApiModelProperty } from "@nestjs/swagger";
-import { IsString, IsNumber } from "class-validator";
+import { IsString, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateControlDto {
     @ApiModelProperty()
@@ -17,4 +17,9 @@ export class CreateControlDto {
     @ApiModelProperty()
     @IsNumber()
     readonly userId: number;
+
+    @ApiModelProperty()
+    @IsNumber()
+    @IsOptional()
+    readonly roomId?: number;
 }

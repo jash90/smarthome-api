@@ -14,10 +14,14 @@ export class ControlDto {
     @ApiModelProperty()
     readonly userId: number;
 
+    @ApiModelProperty()
+    readonly roomId?: number;
+
     constructor(control: Control) {
         this.name = control.name;
         this.value = control.value;
         this.typeId = control.typeId;
         this.userId = control.userId;
+        this.roomId = control.roomId; 
     }
 }

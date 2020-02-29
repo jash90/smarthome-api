@@ -12,11 +12,11 @@ export class ControlService {
         private readonly controlsRepository: typeof Control
     ) {}
 
-    async findAll(userId:number): Promise<ControlDto[]> {
+    async findAll(userId: number): Promise<ControlDto[]> {
         const controls = await this.controlsRepository.findAll<Control>({
             include: [],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
-            where:{userId}
+            where: { userId }
         });
         return controls.map(control => {
             return new ControlDto(control);
@@ -42,6 +42,7 @@ export class ControlService {
         control.value = CreateDto.value;
         control.typeId = CreateDto.typeId;
         control.userId = CreateDto.userId;
+        control.roomId = CreateDto.roomId;
 
         try {
             return await control.save();
@@ -69,6 +70,7 @@ export class ControlService {
         control.value = UpdateDto.value || control.value;
         control.typeId = UpdateDto.typeId || control.typeId;
         control.userId = UpdateDto.userId || control.userId;
+        control.roomId = UpdateDto.roomId || control.roomId;
 
         try {
             return await control.save();
