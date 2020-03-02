@@ -33,6 +33,7 @@ export class RoomController {
 
     @Get()
     @ApiOkResponse({ type: [RoomDto] })
+    @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
     findAll(@Req() request): Promise<RoomDto[]> {
         return this.roomsService.findAll(request.user.id);
