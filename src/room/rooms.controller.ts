@@ -61,9 +61,10 @@ export class RoomController {
     @UseGuards(AuthGuard("jwt"))
     update(
         @Param("id", new ParseIntPipe()) id: number,
-        @Body() UpdateDto: UpdateRoomDto
+        @Body() UpdateDto: UpdateRoomDto,
+        @Req() request
     ): Promise<Room> {
-        return this.roomsService.update(id, UpdateDto);
+        return this.roomsService.update(id, UpdateDto, request.user.id);
     }
 
     @Delete(":id")
