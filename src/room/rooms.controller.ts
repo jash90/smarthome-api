@@ -24,7 +24,7 @@ import { UpdateRoomDto } from "./dto/update-room.dto";
 import { RoomOffset } from "./dto/room.offset";
 import { Room } from "./room.entity";
 import { RoomService } from "./rooms.service";
-import request from 'supertest';
+import request from "supertest";
 
 @Controller("rooms")
 @ApiUseTags("rooms")
@@ -50,8 +50,8 @@ export class RoomController {
     @ApiCreatedResponse({ type: Room })
     @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
-    create(@Body() createDto: CreateRoomDto): Promise<Room> {
-        return this.roomsService.create(createDto);
+    create(@Req() request, @Body() createDto: CreateRoomDto): Promise<Room> {
+        return this.roomsService.create(createDto, request.user.id);
     }
 
     @Put(":id")

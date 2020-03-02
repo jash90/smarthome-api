@@ -35,11 +35,11 @@ export class RoomService {
         return new RoomDto(room);
     }
 
-    async create(CreateDto: CreateRoomDto): Promise<Room> {
+    async create(CreateDto: CreateRoomDto, userId:number): Promise<Room> {
         const room = new Room();
 
         room.name = CreateDto.name;
-        room.userId = CreateDto.userId;
+        room.userId = userId;
         room.flatId = CreateDto.flatId;
 
         try {
