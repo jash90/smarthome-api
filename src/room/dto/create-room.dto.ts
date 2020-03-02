@@ -9,4 +9,8 @@ export class CreateRoomDto {
     @ApiModelProperty()
     @IsNumber()
     readonly userId: number;
+
+    @ApiModelProperty()
+    @IsNumber()
+    readonly flatId?: number;
 }

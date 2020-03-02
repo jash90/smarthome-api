@@ -7,7 +7,8 @@ import {
     ParseIntPipe,
     Post,
     Put,
-    UseGuards
+    UseGuards,
+    Req
 } from "@nestjs/common";
 import {
     ApiBearerAuth,
@@ -23,6 +24,7 @@ import { UpdateRoomDto } from "./dto/update-room.dto";
 import { RoomOffset } from "./dto/room.offset";
 import { Room } from "./room.entity";
 import { RoomService } from "./rooms.service";
+import request from 'supertest';
 
 @Controller("rooms")
 @ApiUseTags("rooms")
@@ -31,8 +33,9 @@ export class RoomController {
 
     @Get()
     @ApiOkResponse({ type: [RoomDto] })
-    findAll(): Promise<RoomDto[]> {
-        return this.roomsService.findAll();
+    @UseGuards(AuthGuard("jwt"))
+    findAll(@Req() request): Promise<RoomDto[]> {
+        return this.roomsService.findAll(request.user.id);
     }
 
     @Get(":id")

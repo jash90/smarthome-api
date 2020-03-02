@@ -12,10 +12,11 @@ export class RoomService {
         private readonly roomsRepository: typeof Room
     ) {}
 
-    async findAll(): Promise<RoomDto[]> {
+    async findAll(userId:number): Promise<RoomDto[]> {
         const rooms = await this.roomsRepository.findAll<Room>({
             include: [],
-            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+            where:{userId}
         });
         return rooms.map(room => {
             return new RoomDto(room);
@@ -39,6 +40,7 @@ export class RoomService {
 
         room.name = CreateDto.name;
         room.userId = CreateDto.userId;
+        room.flatId = CreateDto.flatId;
 
         try {
             return await room.save();
@@ -64,6 +66,7 @@ export class RoomService {
 
         room.name = UpdateDto.name || room.name;
         room.userId = UpdateDto.userId || room.userId;
+        room.flatId = UpdateDto.flatId || room.flatId;
 
         try {
             return await room.save();

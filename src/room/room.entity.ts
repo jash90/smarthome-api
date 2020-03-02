@@ -41,10 +41,10 @@ export class Room extends Model<Room> {
 
     @ForeignKey(() => Flat)
     @Column(DataType.BIGINT)
-    flatId: number;
+    flatId?: number;
 
     @BelongsTo(() => Flat)
-    flat: Flat;
+    flat?: Flat;
 
     @HasMany(() => Control)
     controls: Control[];
