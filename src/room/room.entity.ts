@@ -39,13 +39,6 @@ export class Room extends Model<Room> {
     @BelongsTo(() => User)
     user: User;
 
-    @ForeignKey(() => Flat)
-    @Column(DataType.BIGINT)
-    flatId?: number;
-
-    @BelongsTo(() => Flat)
-    flat?: Flat;
-
     @HasMany(() => Control)
     controls: Control[];
 

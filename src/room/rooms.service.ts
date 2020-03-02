@@ -40,7 +40,6 @@ export class RoomService {
 
         room.name = CreateDto.name;
         room.userId = userId;
-        room.flatId = CreateDto.flatId;
 
         try {
             return await room.save();
@@ -66,7 +65,6 @@ export class RoomService {
 
         room.name = UpdateDto.name || room.name;
         room.userId = UpdateDto.userId || room.userId;
-        room.flatId = UpdateDto.flatId || room.flatId;
 
         try {
             return await room.save();

@@ -6,14 +6,4 @@ export class UpdateRoomDto {
     @IsString()
     @IsOptional()
     readonly name?: string;
-
-    @ApiModelProperty()
-    @IsNumber()
-    @IsOptional()
-    readonly userId?: number;
-
-    @ApiModelProperty()
-    @IsNumber()
-    @IsOptional()
-    readonly flatId?: number;
 }
