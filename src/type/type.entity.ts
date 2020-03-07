@@ -16,7 +16,7 @@ import {
 } from "sequelize-typescript";
 
 import { Control } from "../control/control.entity";
-import { GroupControl } from "../shared/enum/enums";
+import { Group } from "../shared/enum/enums";
 
 @Table({
     tableName: "types"
@@ -37,8 +37,8 @@ export class Type extends Model<Type> {
     @Column(DataType.TEXT)
     icon: string;
 
-    @Column({ type: DataType.ENUM(GroupControl.slider, GroupControl.switch) })
-    group: GroupControl;
+    @Column({ type: DataType.ENUM(Group.slider, Group.switch) })
+    group: Group;
 
     @HasMany(() => Control)
     controls: Control[];

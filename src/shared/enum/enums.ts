@@ -1,4 +1,4 @@
-export enum GroupControl {
+export enum Group {
     switch = "switch",
     slider = "slider"
 }

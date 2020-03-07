@@ -1,6 +1,6 @@
 import { ApiModelProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, IsEnum } from "class-validator";
-import { GroupControl } from "../../shared/enum/enums";
+import { Group } from "../../shared/enum/enums";
 
 export class UpdateTypeDto {
     @ApiModelProperty()
@@ -19,7 +19,7 @@ export class UpdateTypeDto {
     readonly icon?: string;
 
     @ApiModelProperty()
-    @IsEnum(GroupControl)
+    @IsEnum(Group)
     @IsOptional()
-    readonly group?: GroupControl;
+    readonly group?: Group;
 }

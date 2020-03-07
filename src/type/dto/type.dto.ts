@@ -1,6 +1,6 @@
 import { ApiModelProperty } from "@nestjs/swagger";
 import { Type } from "../type.entity";
-import { GroupControl } from "../../shared/enum/enums";
+import { Group } from "../../shared/enum/enums";
 
 export class TypeDto {
     @ApiModelProperty()
@@ -13,7 +13,7 @@ export class TypeDto {
     readonly icon: string;
 
     @ApiModelProperty()
-    readonly group: GroupControl;
+    readonly group: Group;
 
     @ApiModelProperty()
     readonly min: number = null;
@@ -26,7 +26,7 @@ export class TypeDto {
         this.values = type.values;
         this.icon = type.icon;
         this.group = type.group;
-        if (type.group === GroupControl.slider) {
+        if (type.group === Group.slider) {
             let values: number[] = JSON.parse(type.values);
             this.min = Math.min(...values);
             this.max = Math.max(...values);
