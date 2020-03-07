@@ -72,8 +72,11 @@ export class RoomController {
     @ApiImplicitParam({ name: "id", required: true })
     @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
-    delete(@Param("id", new ParseIntPipe()) id: number): Promise<Room> {
-        return this.roomsService.delete(id);
+    delete(
+        @Param("id", new ParseIntPipe()) id: number,
+        @Req() request
+    ): Promise<Room> {
+        return this.roomsService.delete(id, request.user.id);
     }
 
     @Get(":id")
