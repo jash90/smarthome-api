@@ -12,11 +12,11 @@ export class RoomService {
         private readonly roomsRepository: typeof Room
     ) {}
 
-    async findAll(userId:number): Promise<RoomDto[]> {
+    async findAll(userId: number): Promise<RoomDto[]> {
         const rooms = await this.roomsRepository.findAll<Room>({
             include: [],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
-            where:{userId}
+            where: { userId }
         });
         return rooms.map(room => {
             return new RoomDto(room);
@@ -35,7 +35,7 @@ export class RoomService {
         return new RoomDto(room);
     }
 
-    async create(CreateDto: CreateRoomDto, userId:number): Promise<Room> {
+    async create(CreateDto: CreateRoomDto, userId: number): Promise<Room> {
         const room = new Room();
 
         room.name = CreateDto.name;
@@ -48,10 +48,11 @@ export class RoomService {
         }
     }
 
-    private async getRoom(id: number): Promise<Room> {
+    private async getRoom(id: number, userId: number): Promise<Room> {
         const room = await this.roomsRepository.findByPk<Room>(id, {
             include: [],
-            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+            where: { userId }
         });
         if (!room) {
             throw new HttpException("No room found", HttpStatus.NOT_FOUND);
@@ -60,8 +61,12 @@ export class RoomService {
         return room;
     }
 
-    async update(id: number, UpdateDto: UpdateRoomDto, userId:number): Promise<Room> {
-        const room = await this.getRoom(id);
+    async update(
+        id: number,
+        UpdateDto: UpdateRoomDto,
+        userId: number
+    ): Promise<Room> {
+        const room = await this.getRoom(id, userId);
 
         room.name = UpdateDto.name || room.name;
         room.userId = userId || room.userId;
@@ -73,8 +78,8 @@ export class RoomService {
         }
     }
 
-    async delete(id: number): Promise<Room> {
-        const room = await this.getRoom(id);
+    async delete(id: number, userId: number): Promise<Room> {
+        const room = await this.getRoom(id, userId);
         await room.destroy();
         return room;
     }
