@@ -15,10 +15,20 @@ export class TypeDto {
     @ApiModelProperty()
     readonly group: GroupControl;
 
+    @ApiModelProperty()
+    readonly min: number = null;
+
+    @ApiModelProperty()
+    readonly max: number = null;
+
     constructor(type: Type) {
         this.name = type.name;
         this.values = type.values;
         this.icon = type.icon;
         this.group = type.group;
+        if (type.group === GroupControl.slider) {
+            this.min = Math.min(JSON.parse(type.values));
+            this.max = Math.max(JSON.parse(type.values));
+        }
     }
 }
