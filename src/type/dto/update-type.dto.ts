@@ -1,6 +1,6 @@
 import { ApiModelProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, IsEnum } from "class-validator";
-import { GroupControl } from "src/shared/enum/enums";
+import { GroupControl } from "../../shared/enum/enums";
 
 export class UpdateTypeDto {
     @ApiModelProperty()
