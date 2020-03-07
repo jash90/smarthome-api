@@ -27,8 +27,9 @@ export class TypeDto {
         this.icon = type.icon;
         this.group = type.group;
         if (type.group === GroupControl.slider) {
-            this.min = Math.min(JSON.parse(type.values));
-            this.max = Math.max(JSON.parse(type.values));
+            let values: number[] = JSON.parse(type.values);
+            this.min = Math.min(...values);
+            this.max = Math.max(...values);
         }
     }
 }
