@@ -4,6 +4,9 @@ import { Group } from "../../shared/enum/enums";
 
 export class TypeDto {
     @ApiModelProperty()
+    readonly id: number;
+
+    @ApiModelProperty()
     readonly name: string;
 
     @ApiModelProperty()
