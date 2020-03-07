@@ -1,5 +1,6 @@
 import { ApiModelProperty } from "@nestjs/swagger";
 import { Control } from "../control.entity";
+import { GroupControl } from "../../shared/enum/enums";
 
 export class ControlDto {
     @ApiModelProperty()
@@ -12,7 +13,10 @@ export class ControlDto {
     readonly value: string;
 
     @ApiModelProperty()
-    readonly typeId: number;
+    readonly icon: string;
+
+    @ApiModelProperty()
+    readonly group: GroupControl;
 
     @ApiModelProperty()
     readonly userId: number;
@@ -24,7 +28,8 @@ export class ControlDto {
         this.id = control.id;
         this.name = control.name;
         this.value = control.value;
-        this.typeId = control.typeId;
+        this.icon = control.type.icon;
+        this.group = control.type.group;
         this.userId = control.userId;
         this.roomId = control.roomId;
     }

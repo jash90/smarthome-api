@@ -15,9 +15,11 @@ export class UpdateTypeDto {
 
     @ApiModelProperty()
     @IsString()
-    readonly icon: string;
+    @IsOptional()
+    readonly icon?: string;
 
     @ApiModelProperty()
     @IsEnum(GroupControl)
-    readonly group: GroupControl;
+    @IsOptional()
+    readonly group?: GroupControl;
 }

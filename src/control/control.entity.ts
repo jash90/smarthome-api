@@ -10,11 +10,11 @@ import {
     PrimaryKey,
     Table,
     Unique,
-    UpdatedAt,
-} from 'sequelize-typescript';
-import { Room } from '../room/room.entity';
-import { Type } from '../type/type.entity';
-import { User } from '../users/user.entity';
+    UpdatedAt
+} from "sequelize-typescript";
+import { Room } from "../room/room.entity";
+import { Type } from "../type/type.entity";
+import { User } from "../users/user.entity";
 
 @Table({
     tableName: "controls"
@@ -37,7 +37,7 @@ export class Control extends Model<Control> {
     typeId: number;
 
     @BelongsTo(() => Type)
-    type: Control;
+    type: Type;
 
     @ForeignKey(() => User)
     @Column(DataType.BIGINT)
