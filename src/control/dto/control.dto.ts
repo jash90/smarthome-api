@@ -3,6 +3,9 @@ import { Control } from "../control.entity";
 
 export class ControlDto {
     @ApiModelProperty()
+    readonly id: number;
+
+    @ApiModelProperty()
     readonly name: string;
 
     @ApiModelProperty()
@@ -18,10 +21,11 @@ export class ControlDto {
     readonly roomId?: number;
 
     constructor(control: Control) {
+        this.id = control.id;
         this.name = control.name;
         this.value = control.value;
         this.typeId = control.typeId;
         this.userId = control.userId;
-        this.roomId = control.roomId; 
+        this.roomId = control.roomId;
     }
 }
