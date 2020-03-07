@@ -39,6 +39,8 @@ export class TypeService {
 
         type.name = CreateDto.name;
         type.values = CreateDto.values;
+        type.icon = CreateDto.icon;
+        type.group = CreateDto.group;
 
         try {
             return await type.save();
@@ -64,6 +66,8 @@ export class TypeService {
 
         type.name = UpdateDto.name || type.name;
         type.values = UpdateDto.values || type.values;
+        type.icon = UpdateDto.icon || type.icon;
+        type.group = UpdateDto.group || type.group;
 
         try {
             return await type.save();
