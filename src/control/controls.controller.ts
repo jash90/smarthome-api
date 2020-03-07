@@ -49,8 +49,11 @@ export class ControlController {
     @ApiCreatedResponse({ type: Control })
     @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
-    create(@Body() createDto: CreateControlDto): Promise<Control> {
-        return this.controlsService.create(createDto);
+    create(
+        @Body() createDto: CreateControlDto,
+        @Req() request
+    ): Promise<Control> {
+        return this.controlsService.create(createDto, request.user.id);
     }
 
     @Put(":id")
@@ -60,9 +63,10 @@ export class ControlController {
     @UseGuards(AuthGuard("jwt"))
     update(
         @Param("id", new ParseIntPipe()) id: number,
-        @Body() UpdateDto: UpdateControlDto
+        @Body() UpdateDto: UpdateControlDto,
+        @Req() request
     ): Promise<Control> {
-        return this.controlsService.update(id, UpdateDto);
+        return this.controlsService.update(id, UpdateDto, request.user.id);
     }
 
     @Delete(":id")
@@ -70,8 +74,11 @@ export class ControlController {
     @ApiImplicitParam({ name: "id", required: true })
     @ApiBearerAuth()
     @UseGuards(AuthGuard("jwt"))
-    delete(@Param("id", new ParseIntPipe()) id: number): Promise<Control> {
-        return this.controlsService.delete(id);
+    delete(
+        @Param("id", new ParseIntPipe()) id: number,
+        @Req() request
+    ): Promise<Control> {
+        return this.controlsService.delete(id, request.user.id);
     }
 
     @Get(":id")

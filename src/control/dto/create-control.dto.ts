@@ -1,5 +1,5 @@
 import { ApiModelProperty } from "@nestjs/swagger";
-import { IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsOptional } from "class-validator";
 
 export class CreateControlDto {
     @ApiModelProperty()
@@ -13,10 +13,6 @@ export class CreateControlDto {
     @ApiModelProperty()
     @IsNumber()
     readonly typeId: number;
-
-    @ApiModelProperty()
-    @IsNumber()
-    readonly userId: number;
 
     @ApiModelProperty()
     @IsNumber()

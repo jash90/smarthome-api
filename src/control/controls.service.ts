@@ -35,13 +35,16 @@ export class ControlService {
         return new ControlDto(control);
     }
 
-    async create(CreateDto: CreateControlDto): Promise<Control> {
+    async create(
+        CreateDto: CreateControlDto,
+        userId: number
+    ): Promise<Control> {
         const control = new Control();
 
         control.name = CreateDto.name;
         control.value = CreateDto.value;
         control.typeId = CreateDto.typeId;
-        control.userId = CreateDto.userId;
+        control.userId = userId;
         control.roomId = CreateDto.roomId;
 
         try {
@@ -51,10 +54,11 @@ export class ControlService {
         }
     }
 
-    private async getControl(id: number): Promise<Control> {
+    private async getControl(id: number, userId: number): Promise<Control> {
         const control = await this.controlsRepository.findByPk<Control>(id, {
             include: [],
-            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+            where: { userId }
         });
         if (!control) {
             throw new HttpException("No control found", HttpStatus.NOT_FOUND);
@@ -63,13 +67,17 @@ export class ControlService {
         return control;
     }
 
-    async update(id: number, UpdateDto: UpdateControlDto): Promise<Control> {
-        const control = await this.getControl(id);
+    async update(
+        id: number,
+        UpdateDto: UpdateControlDto,
+        userId: number
+    ): Promise<Control> {
+        const control = await this.getControl(id, userId);
 
         control.name = UpdateDto.name || control.name;
         control.value = UpdateDto.value || control.value;
         control.typeId = UpdateDto.typeId || control.typeId;
-        control.userId = UpdateDto.userId || control.userId;
+        control.userId = userId || control.userId;
         control.roomId = UpdateDto.roomId || control.roomId;
 
         try {
@@ -79,8 +87,8 @@ export class ControlService {
         }
     }
 
-    async delete(id: number): Promise<Control> {
-        const control = await this.getControl(id);
+    async delete(id: number, userId: number): Promise<Control> {
+        const control = await this.getControl(id, userId);
         await control.destroy();
         return control;
     }
