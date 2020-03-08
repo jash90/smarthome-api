@@ -25,6 +25,7 @@ export class TypeDto {
     readonly max: number = null;
 
     constructor(type: Type) {
+        this.id = type.id;
         this.name = type.name;
         this.values = type.values;
         this.icon = type.icon;
