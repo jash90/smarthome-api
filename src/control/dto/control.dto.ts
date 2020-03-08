@@ -24,7 +24,7 @@ export class ControlDto {
         this.id = control.id;
         this.name = control.name;
         this.value = control.value;
-        this.typeId = control.type.id;
+        this.typeId = control.typeId;
         this.userId = control.userId;
         this.roomId = control.roomId;
     }
