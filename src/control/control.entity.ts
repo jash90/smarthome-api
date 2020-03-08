@@ -47,11 +47,11 @@ export class Control extends Model<Control> {
     user: User;
 
     @ForeignKey(() => Room)
-    @Column(DataType.BIGINT)
+    @Column({ type: DataType.BIGINT, allowNull: true, defaultValue: null })
     roomId?: number;
 
     @BelongsTo(() => Room)
-    room?: Room;
+    room?: Room | null;
 
     @CreatedAt
     @Column({ field: "createdAt" })
