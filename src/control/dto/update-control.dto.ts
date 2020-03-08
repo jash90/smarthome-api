@@ -1,5 +1,10 @@
 import { ApiModelProperty } from "@nestjs/swagger";
-import { IsString, IsNumber, IsOptional } from "class-validator";
+import {
+    IsString,
+    IsNumber,
+    IsOptional,
+    IsNumberString
+} from "class-validator";
 
 export class UpdateControlDto {
     @ApiModelProperty()
@@ -13,12 +18,12 @@ export class UpdateControlDto {
     readonly value?: string;
 
     @ApiModelProperty()
-    @IsNumber()
+    @IsNumberString()
     @IsOptional()
     readonly typeId?: number;
 
     @ApiModelProperty()
-    @IsNumber()
+    @IsNumberString()
     @IsOptional()
     readonly roomId?: number;
 }
