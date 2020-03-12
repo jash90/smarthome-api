@@ -19,5 +19,6 @@ export class RoomDto {
         this.id = room.id;
         this.name = room.name;
         this.userId = room.userId;
+        this.controls = room.controls;
     }
 }
