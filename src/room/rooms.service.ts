@@ -4,17 +4,19 @@ import { RoomDto } from "../room/dto/room.dto";
 import { CreateRoomDto } from "../room/dto/create-room.dto";
 import { UpdateRoomDto } from "../room/dto/update-room.dto";
 import { RoomOffset } from "../room/dto/room.offset";
+import { Transaction } from "sequelize";
+import { Control } from "src/control/control.entity";
 
 @Injectable()
 export class RoomService {
     constructor(
         @Inject("RoomsRepository")
         private readonly roomsRepository: typeof Room
-    ) {}
+    ) { }
 
     async findAll(userId: number): Promise<RoomDto[]> {
         const rooms = await this.roomsRepository.findAll<Room>({
-            include: [],
+            include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
             where: { userId }
         });
@@ -25,7 +27,7 @@ export class RoomService {
 
     async findOne(id: number): Promise<RoomDto> {
         const room = await this.roomsRepository.findByPk<Room>(id, {
-            include: [],
+            include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
         });
         if (!room) {
@@ -50,7 +52,7 @@ export class RoomService {
 
     private async getRoom(id: number, userId: number): Promise<Room> {
         const room = await this.roomsRepository.findByPk<Room>(id, {
-            include: [],
+            include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
             where: { userId }
         });
@@ -86,7 +88,7 @@ export class RoomService {
 
     async offset(index: number = 0): Promise<RoomOffset> {
         const rooms = await this.roomsRepository.findAndCountAll({
-            include: [],
+            include: [Control],
             limit: 100,
             offset: index * 100,
             order: ["id"],

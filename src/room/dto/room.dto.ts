@@ -1,5 +1,6 @@
 import { ApiModelProperty } from "@nestjs/swagger";
 import { Room } from "../room.entity";
+import { ControlDto } from "../../control/dto/control.dto";
 
 export class RoomDto {
     @ApiModelProperty()
@@ -10,6 +11,9 @@ export class RoomDto {
 
     @ApiModelProperty()
     readonly userId: number;
+
+    @ApiModelProperty()
+    readonly controls: ControlDto[];
 
     constructor(room: Room) {
         this.id = room.id;
