@@ -18,7 +18,10 @@ export class RoomService {
         const rooms = await this.roomsRepository.findAll<Room>({
             include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
-            where: { userId }
+            where: { userId },
+            order: [
+                ['id', 'DESC'],
+            ],
         });
         return rooms.map(room => {
             return new RoomDto(room);
@@ -82,7 +85,7 @@ export class RoomService {
 
     async delete(id: number, userId: number): Promise<Room> {
         const room = await this.getRoom(id, userId);
-        await room.destroy();
+        await room.destroy({ force: true });
         return room;
     }
 

@@ -10,12 +10,15 @@ export class TypeService {
     constructor(
         @Inject("TypesRepository")
         private readonly typesRepository: typeof Type
-    ) {}
+    ) { }
 
     async findAll(): Promise<TypeDto[]> {
         const types = await this.typesRepository.findAll<Type>({
             include: [],
-            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] }
+            attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
+            order: [
+                ['id', 'DESC'],
+            ],
         });
         return types.map(type => {
             return new TypeDto(type);

@@ -10,13 +10,16 @@ export class ControlService {
     constructor(
         @Inject("ControlsRepository")
         private readonly controlsRepository: typeof Control
-    ) {}
+    ) { }
 
     async findAll(userId: number): Promise<ControlDto[]> {
         const controls = await this.controlsRepository.findAll<Control>({
             include: [],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
-            where: { userId }
+            where: { userId },
+            order: [
+                ['id', 'DESC'],
+            ],
         });
         return controls.map(control => {
             return new ControlDto(control);
