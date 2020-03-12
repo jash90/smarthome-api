@@ -5,7 +5,7 @@ import { CreateRoomDto } from "../room/dto/create-room.dto";
 import { UpdateRoomDto } from "../room/dto/update-room.dto";
 import { RoomOffset } from "../room/dto/room.offset";
 import { Transaction } from "sequelize";
-import { Control } from "src/control/control.entity";
+import { Control } from "../control/control.entity";
 
 @Injectable()
 export class RoomService {
