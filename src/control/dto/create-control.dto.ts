@@ -4,13 +4,13 @@ import {
     IsNumber,
     IsOptional,
     IsNumberString,
-    IsEmpty
+    IsNotEmpty
 } from "class-validator";
 
 export class CreateControlDto {
     @ApiModelProperty()
     @IsString()
-    @IsEmpty()
+    @IsNotEmpty()
     readonly name: string;
 
     @ApiModelProperty()

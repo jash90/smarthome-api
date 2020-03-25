@@ -3,14 +3,14 @@ import {
     IsString,
     IsNumber,
     IsOptional,
-    IsEmpty,
+    IsNotEmpty,
     IsNumberString
 } from "class-validator";
 
 export class UpdateControlDto {
     @ApiModelProperty()
     @IsString()
-    @IsEmpty()
+    @IsNotEmpty()
     @IsOptional()
     readonly name?: string;
 
