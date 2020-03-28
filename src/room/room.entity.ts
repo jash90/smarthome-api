@@ -27,7 +27,6 @@ export class Room extends Model<Room> {
     @Column(DataType.BIGINT)
     id: number;
 
-    @Unique(true)
     @Column(DataType.TEXT)
     name: string;
 

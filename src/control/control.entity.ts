@@ -25,7 +25,6 @@ export class Control extends Model<Control> {
     @Column(DataType.BIGINT)
     id: number;
 
-    @Unique(true)
     @Column(DataType.TEXT)
     name: string;
 
