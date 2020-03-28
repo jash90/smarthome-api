@@ -16,7 +16,6 @@ export class RoomService {
 
     async findAll(userId: number): Promise<RoomDto[]> {
         const rooms = await this.roomsRepository.findAll<Room>({
-            include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
             where: { userId },
             order: [
@@ -55,7 +54,6 @@ export class RoomService {
 
     private async getRoom(id: number, userId: number): Promise<Room> {
         const room = await this.roomsRepository.findByPk<Room>(id, {
-            include: [Control],
             attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
             where: { userId }
         });
@@ -91,7 +89,6 @@ export class RoomService {
 
     async offset(index: number = 0): Promise<RoomOffset> {
         const rooms = await this.roomsRepository.findAndCountAll({
-            include: [Control],
             limit: 100,
             offset: index * 100,
             order: ["id"],

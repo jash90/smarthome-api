@@ -12,13 +12,9 @@ export class RoomDto {
     @ApiModelProperty()
     readonly userId: number;
 
-    @ApiModelProperty()
-    readonly controls: ControlDto[];
-
     constructor(room: Room) {
         this.id = room.id;
         this.name = room.name;
         this.userId = room.userId;
-        this.controls = room.controls;
     }
 }
